@@ -53,9 +53,11 @@ if (!empty($_POST['formProduto'])) {
     
     ?>
 
-    <a href="./?pg=listaProdutos">Voltar</a>
-
     <form id="formProduto" action="pg/produto.php" method="post">
+        
+        <a class="botao" href="./?pg=listaProdutos">Voltar</a>
+        <br>
+        <br>
 
         <input type="hidden" name="formProduto" value="ok">
         <?php if (!empty($_GET['id'])) { ?>

@@ -16,11 +16,9 @@ if (!empty($_POST['formFornecedores'])) {
         $f = mysql_fetch_assoc($s);
 
         $id = $f['forn_id'];
-        
     } else {
-        
+
         $id = $_POST['forn_id'];
-        
     }
 
     //atualiza
@@ -44,77 +42,81 @@ if (!empty($_POST['formFornecedores'])) {
     mysql_select_db($base, $con);
     $s = mysql_query($sql, $con) or die(mysql_error());
     $f = mysql_fetch_assoc($s);
-    
+
     header('Location: ../?pg=listaFornecedores');
-    
 } else {
-    
+
     if (!empty($_GET['id'])) {
         mysql_select_db($base, $con);
-        $s = mysql_query("SELECT * FROM fornecedores WHERE forn_id=".$_GET['id'], $con) or die(mysql_error());
+        $s = mysql_query("SELECT * FROM fornecedores WHERE forn_id=" . $_GET['id'], $con) or die(mysql_error());
         $forn = mysql_fetch_assoc($s);
     }
-    
     ?>
 
-<!--<a href="./">Voltar</a><a href="./pg=listaProdutos">Voltar</a>-->
-    <a href="./?pg=listaFornecedores">Voltar</a>
+    <!--<a href="./">Voltar</a><a href="./pg=listaProdutos">Voltar</a>-->
 
     <form id="formFornecedores" action="pg/fornecedores.php" method="post">
+        <a class="botao" href="./?pg=listaFornecedores">Voltar</a>
+        <br>
+        <br>
 
         <input type="hidden" name="formFornecedores" value="ok">
-        <?php if (!empty($_GET['id'])) { ?>
-        <input type="hidden" name="forn_id" value="<?php echo $_GET['id']; ?>">
-        <?php } ?>
+    <?php if (!empty($_GET['id'])) { ?>
+            <input type="hidden" name="forn_id" value="<?php echo $_GET['id']; ?>">
+    <?php } ?>
 
-        <div class="form-group">
-            <label>Cnpj</label>
-            <input type="text" name="cnpj" value="<?php echo (!empty($forn['forn_cnpj'])?$forn['forn_cnpj']:''); ?>">
-        </div>
+        <div id="div1">
 
-        <div class="form-group">
-            <label>Razão Social</label>
-            <input type="text" name="razaosoc" value="<?php echo (!empty($forn['forn_razaosoc'])?$forn['forn_razaosoc']:''); ?>">
-        </div>
+            <div class="form-group">
+                <label>Cnpj</label>
+                <input type="text" name="cnpj" value="<?php echo (!empty($forn['forn_cnpj']) ? $forn['forn_cnpj'] : ''); ?>">
+            </div>
 
-        <div class="form-group">
-            <label>Endereço</label>
-            <input type="text" name="rua" value="<?php echo (!empty($forn['forn_rua'])?$forn['forn_rua']:''); ?>">
-        </div>
-        <div class="form-group">
-            <label>Número</label>
-            <input type="text" name="numero" value="<?php echo (!empty($forn['forn_numero'])?$forn['forn_numero']:''); ?>">
-        </div>
-        <div class="form-group">
-            <label>Complemento</label>
-            <input type="text" name="complemento" value="<?php echo (!empty($forn['forn_complemento'])?$forn['forn_complemento']:''); ?>">
-        </div>
-        <div class="form-group">
-            <label>Bairro</label>
-            <input type="text" name="bairro" value="<?php echo (!empty($forn['forn_bairro'])?$forn['forn_bairro']:''); ?>">
-        </div>
-        <div class="form-group">
-            <label>Cidade</label>
-            <input type="text" name="cidade" value="<?php echo (!empty($forn['forn_cidade'])?$forn['forn_cidade']:''); ?>">
-        </div>
-        <div class="form-group">
-            <label>UF</label>
-            <input type="text" name="uf" value="<?php echo (!empty($forn['forn_uf'])?$forn['forn_uf']:''); ?>">
-        </div>
-        <div class="form-group">
-            <label>País</label>
-            <input type="text" name="pais" value="<?php echo (!empty($forn['forn_pais'])?$forn['forn_pais']:''); ?>">
-        </div>
-        <div class="form-group">
-            <label>Fone</label>
-            <input type="text" name="fone" value="<?php echo (!empty($forn['forn_fone'])?$forn['forn_fone']:''); ?>">
-        </div>
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" value="<?php echo (!empty($forn['forn_email'])?$forn['forn_email']:''); ?>">
-        </div>
+            <div class="form-group">
+                <label>Razão Social</label>
+                <input type="text" name="razaosoc" value="<?php echo (!empty($forn['forn_razaosoc']) ? $forn['forn_razaosoc'] : ''); ?>">
+            </div>
 
-        <input type="submit" value="Cadastrar">
+            <div class="form-group">
+                <label>Endereço</label>
+                <input type="text" name="rua" value="<?php echo (!empty($forn['forn_rua']) ? $forn['forn_rua'] : ''); ?>">
+            </div>
+            <div class="form-group">
+                <label>Número</label>
+                <input type="text" name="numero" value="<?php echo (!empty($forn['forn_numero']) ? $forn['forn_numero'] : ''); ?>">
+            </div>
+            <div class="form-group">
+                <label>Complemento</label>
+                <input type="text" name="complemento" value="<?php echo (!empty($forn['forn_complemento']) ? $forn['forn_complemento'] : ''); ?>">
+            </div>
+            <div class="form-group">
+                <label>Bairro</label>
+                <input type="text" name="bairro" value="<?php echo (!empty($forn['forn_bairro']) ? $forn['forn_bairro'] : ''); ?>">
+            </div>
+        </div>
+        <div id="div2">
+            <div class="form-group">
+                <label>Cidade</label>
+                <input type="text" name="cidade" value="<?php echo (!empty($forn['forn_cidade']) ? $forn['forn_cidade'] : ''); ?>">
+            </div>
+            <div class="form-group">
+                <label>UF</label>
+                <input type="text" name="uf" value="<?php echo (!empty($forn['forn_uf']) ? $forn['forn_uf'] : ''); ?>">
+            </div>
+            <div class="form-group">
+                <label>País</label>
+                <input type="text" name="pais" value="<?php echo (!empty($forn['forn_pais']) ? $forn['forn_pais'] : ''); ?>">
+            </div>
+            <div class="form-group">
+                <label>Fone</label>
+                <input type="text" name="fone" value="<?php echo (!empty($forn['forn_fone']) ? $forn['forn_fone'] : ''); ?>">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" value="<?php echo (!empty($forn['forn_email']) ? $forn['forn_email'] : ''); ?>">
+            </div>
+            <input type="submit" value="Cadastrar">
+        </div>
     </form>
     <script>
 
@@ -183,5 +185,5 @@ if (!empty($_POST['formFornecedores'])) {
             }
         });
     </script>
-<?php
+    <?php
 }
